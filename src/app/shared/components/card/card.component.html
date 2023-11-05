@@ -1,0 +1,37 @@
+<div class="card m-3 h-100 w-100">
+  <ul class="list-group list-group-flush" style="max-height: 90vh; overflow-y: auto;">
+    <li class="list-group-item d-flex align-items-center p-3 text-wrap"
+      *ngFor="let obraSocial of obrasSociales; let i = index">
+      <span>{{obraSocial.nombre}}</span>
+      <div class="ms-auto">
+        <button type="button" class="btn btn-outline-secondary btn-sm ms-3 me-1" data-bs-toggle="modal"
+          data-bs-target="#exampleModal" (click)="SeleccionarObraSocial(obraSocial)">
+          Editar
+        </button>
+        <button class="btn btn-sm btn-outline-danger" (click)="EliminarObraSocial(i)">Eliminar</button>
+      </div>
+    </li>
+  </ul>
+</div>
+<!-- MODAL EDITAR -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Editar {{obraSocialSeleccionada?.nombre}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form [formGroup]="formEditar">
+        <div class="modal-body">
+          <input type="text" formControlName="nombreNuevo" class="form-control"
+            aria-label="Text input with dropdown button">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" (click)="EditarObraSocial()" class="btn btn-outline-success"
+            data-bs-dismiss="modal">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
